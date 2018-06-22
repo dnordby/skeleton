@@ -1,0 +1,32 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Skeleton theme",
+    "theme_version": "0.0.1",
+    "theme_author": "Lucid",
+    "theme_documentation_url": "https:\/\/help.shopify.com\/themes\/development",
+    "theme_support_url": "https:\/\/help.shopify.com\/themes\/development"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "primary_brand",
+        "label": "Primary brand color",
+        "default": "#47C1BF"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  }
+]

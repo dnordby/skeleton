@@ -1,0 +1,48 @@
+{% comment %} Capture DESKTOP navigation {% endcomment %}
+{%- assign main = linklists.main-menu -%}
+{% if main.levels > 2 %}
+  {%- capture desktop_nav -%}
+    <nav aria-labelledby="mainmenulabel" class="site-header__desktop-nav">
+      <span id="mainmenulabel" class="visually-hidden">Main Menu</span>
+      <ul class="level-1">
+        {% for level_1 in main.links %}
+          {% if level_1.links.size == 0 %}
+            <li>
+              <a href="{{ level_1.url }}" {% if level_1.active %}aria-current="page"{% endif %} class="{% if level_1.active %} active{% endif %}">{{ level_1.title }}</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="#" aria-haspopup="true" aria-expanded="false" {% if level_1.active %}aria-current="page"{% endif %} class="{% if level_1.active %} active{% endif %}">{{ level_1.title }}</a>
+              <ul class="level-2">
+                {% for level_2 in level_1.links %}
+                  {% if level_2.links.size == 0 %}
+                    <li><a href="{{ level_2.url }}" {% if level_1.active %}aria-current="page"{% endif %} class="{% if level_1.active %} active{% endif %}">{{ level_2.title }}</a></li>
+                  {% else %}
+                    <li>
+                      <a href="{{ level_2.url }}" aria-haspopup="true" aria-expanded="false" {% if level_1.active %}aria-current="page"{% endif %} class="{% if level_1.active %} active{% endif %}">{{ level_2.title }}</a>
+                      <ul class="level-3">
+                        {% for level_3 in level_2.links %}
+                            <li><a href="{{ level_3.url }}" {% if level_1.active %}aria-current="page"{% endif %} class="{% if level_1.active %} active{% endif %}">{{ level_3.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>    
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+  {%- endcapture -%}
+{% else %}
+{% endif %}
+
+
+<div class="site-header">
+  <div class="site-header__logo-wrapper"></div>
+
+  {{ desktop_nav }}
+
+  <div class="site-header__icons"></div>
+</div>
